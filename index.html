@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="styles.css" />
+
     <title>Projekt1-CAS-FEE</title>
   </head>
   <body>
@@ -31,7 +33,20 @@
       </nav>
     </header>
     <section>
-      <ul id="notes_list"></ul>
+      <ul id="notes_list">
+        <li>
+          <div id="note">
+            <p id="due_date">Due Date:dd/mm/yyyy</p>
+            <p id="note_title"></p>
+            <div id="note_importance">⚡</div>
+            <input type="checkbox" id="finished" />
+            <textarea id="note_description" disabled>
+                Lorem ipsum dolor sit amet
+            </textarea>
+            <button id="edit">Edit</button>
+          </div>
+        </li>
+      </ul>
     </section>
   </body>
 </html>
