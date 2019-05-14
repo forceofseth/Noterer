@@ -1,0 +1,4 @@
+/* test why the list style type none is not working */
+ul {
+  list-style-type: none;
+}
