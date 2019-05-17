@@ -5,30 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="../styles.css" />
-    <title>Projekt1-CAS-FEE</title>
+    <title>Noterer</title>
   </head>
   <body>
-    <div id="grid_wrapper">
+    <div id="wrapper">
       <header>
         <nav>
           <div id="nav_row1">
+            <span>Noterer</span>
             <button id="new_note">Create new Note</button>
-            <select>
-              <option value="black_white">Black and White</option>
-              <option value="fancy_colors">Fancy Colors</option>
+            <select id="style_selector">
+              <option value="green_style">Green Style</option>
+              <option value="blue_style">Blue Style</option>
             </select>
           </div>
           <div id="nav_row2">
             <div id="order_options">
-              <h1>Order By:</h1>
-              <span><button id="finished_date">Finish Date</button></span>
-              <span><button id="created_date">Created Date</button></span>
-              <span><button id="importance">Importance</button></span>
+              <button id="finished_date">Finish Date</button>
+              <button id="created_date">Created Date</button>
+              <button id="importance">Importance</button>
             </div>
-            <span>
-              <input type="checkbox" id="show_finished" />
-              <label for="show_finished">Show finished</label>
-            </span>
+            <button id="show_finished">Show Finished</button>
           </div>
         </nav>
       </header>
