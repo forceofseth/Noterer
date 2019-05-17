@@ -1,4 +1,23 @@
-/* test why the list style type none is not working */
 ul {
   list-style-type: none;
+}
+
+#grid_wrapper {
+  display: grid;
+  grid-template-rows: 1fr 1fr 4fr;
+}
+
+#nav_row1 {
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+#nav_row2 {
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#notes_list {
+  grid-row-start: 3;
+  grid-row-end: 4;
 }
