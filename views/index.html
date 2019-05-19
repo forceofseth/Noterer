@@ -12,7 +12,13 @@
       <header>
         <nav>
           <div id="nav_row1" class="nav_row">
-            <button id="new_note" class="button">Create new Note</button>
+            <button
+              id="new_note"
+              class="button"
+              onclick="navigateToDetailsPage()"
+            >
+              Create new Note
+            </button>
             <select id="style_selector" class="">
               <option value="green_style">Green Style</option>
               <option value="blue_style">Blue Style</option>
@@ -51,5 +57,6 @@
         </div>
       </section>
     </div>
+    <script src="../js/index.js"></script>
   </body>
 </html>

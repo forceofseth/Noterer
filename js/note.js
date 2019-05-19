@@ -12,4 +12,9 @@ function saveToLocaleStorage() {
   };
   notes.push(note);
   localStorage.setItem("notes", JSON.stringify(notes));
+  navigateToIndex();
+}
+
+function navigateToIndex() {
+  window.location.href = "index.html";
 }
