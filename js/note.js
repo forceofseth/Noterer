@@ -1,9 +1,13 @@
 function saveToLocaleStorage() {
-  const notes = JSON.parse(localStorage.getItem("notes"));
+  let notes = JSON.parse(localStorage.getItem("notes"));
+  if (notes === null) {
+    localStorage.setItem("notes", JSON.stringify([]));
+    notes = [];
+  }
   const note = {
     title: document.getElementById("details_title").value,
     description: document.getElementById("details_description").value,
-    importance: document.getElementById("details_importance").value,
+    importance: document.getElementById("details_importance").innerHTML,
     dueDate: document.getElementById("details_due_date").value
   };
   notes.push(note);
