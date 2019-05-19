@@ -1,0 +1,15 @@
+html,
+body {
+  background-color: rgb(230, 225, 225);
+}
+
+#note_details {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 1fr 5fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+  border: 1px solid black;
+  margin: 25px;
+  padding: 10px;
+  background-color: white;
+}
