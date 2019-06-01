@@ -12,9 +12,20 @@ function saveToLocaleStorage() {
     importance: document.getElementById("details_importance").innerHTML,
     dueDate: document.getElementById("details_due_date").value
   };
-  notes.push(note);
+
+  pushToArray(notes, note);
   localStorage.setItem("notes", JSON.stringify(notes));
   navigateToIndex();
+}
+
+function pushToArray(arr, obj) {
+  const index = arr.findIndex(e => e.id === obj.id);
+
+  if (index === -1) {
+    arr.push(obj);
+  } else {
+    arr[index] = obj;
+  }
 }
 
 function generateUuid() {
