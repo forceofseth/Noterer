@@ -12,4 +12,13 @@ window.onload = function() {
   document
     .getElementById("new_note")
     .addEventListener("click", navigateToDetailsPage);
+
+  document.getElementById("notes_wrapper").addEventListener("click", editNote);
 };
+
+function editNote(event) {
+  const editButtonId = event.target.dataset.noteId;
+  if (editButtonId) {
+    window.location.href = "note.html?id=" + editButtonId;
+  }
+}

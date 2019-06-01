@@ -37,17 +37,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
     <script id="note_template" type="text/x-handlebars-template">
       {{#each notes}}
-      <div id="note">
-          <div id="note_title">{{title}}</div>
-          <div id="due_date_finished">
+      <div class="note">
+          <div class="note_title">{{title}}</div>
+          <div class="due_date_finished">
             <span><input type="checkbox"/></span>
             <span>{{dueDate}}</span>
           </div>
-          <div id="note_importance">{{importance}}</div>
-          <div id="note_description">
+          <div class="note_importance">{{importance}}</div>
+          <div class="note_description">
             {{description}}
           </div>
-          <button id="edit" class="button">Edit</button>
+          <button class="edit" class="button" data-note-id="{{id}}">Edit</button>
         </div>
         {{/each}}
     </script>
