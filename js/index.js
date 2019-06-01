@@ -8,4 +8,8 @@ window.onload = function() {
   const compiledTemplate = Handlebars.compile(noteTemplate);
   const html = compiledTemplate(context);
   document.getElementById("notes_wrapper").innerHTML = html;
+
+  document
+    .getElementById("new_note")
+    .addEventListener("click", navigateToDetailsPage);
 };

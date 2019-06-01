@@ -15,6 +15,14 @@ function saveToLocaleStorage() {
   navigateToIndex();
 }
 
+window.onload = function() {
+  document
+    .getElementById("save")
+    .addEventListener("click", saveToLocaleStorage);
+
+  document.getElementById("cancel").addEventListener("click", navigateToIndex);
+};
+
 function navigateToIndex() {
   window.location.href = "index.html";
 }
