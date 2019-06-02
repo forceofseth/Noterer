@@ -4,13 +4,19 @@ function saveToLocaleStorage() {
     localStorage.setItem("notes", JSON.stringify([]));
     notes = [];
   }
-  const uuid = getUrlParameter() ? getUrlParameter() : generateUuid();
+  const uuid = getNoteIdFromParameter()
+    ? getNoteIdFromParameter()
+    : generateUuid();
+  const finished_state = getNoteIdFromParameter()
+    ? getFinishStateOnEdit()
+    : false;
   const note = {
     id: uuid,
     title: document.getElementById("details_title").value,
     description: document.getElementById("details_description").value,
     importance: document.getElementById("details_importance").innerHTML,
-    dueDate: document.getElementById("details_due_date").value
+    dueDate: document.getElementById("details_due_date").value,
+    finished: finished_state
   };
 
   pushToArray(notes, note);
@@ -26,6 +32,10 @@ function pushToArray(arr, obj) {
   } else {
     arr[index] = obj;
   }
+}
+
+function getFinishStateOnEdit() {
+  const id = getNoteIdFromParameter();
 }
 
 function generateUuid() {
@@ -51,7 +61,7 @@ function navigateToIndex() {
 }
 
 function fillInInformationOnEdit() {
-  const id = getUrlParameter();
+  const id = getNoteIdFromParameter();
   if (id) {
     let note = JSON.parse(localStorage.getItem("notes")).filter(
       note => note.id === id
@@ -61,9 +71,11 @@ function fillInInformationOnEdit() {
     document.getElementById("details_importance").innerHTML =
       note[0].importance;
     document.getElementById("details_due_date").value = note[0].dueDate;
+    document.getElementById("details_due_date").dataset.finished =
+      note[0].finished;
   }
 }
 
-function getUrlParameter() {
+function getNoteIdFromParameter() {
   return new URL(window.location.href).searchParams.get("id");
 }
