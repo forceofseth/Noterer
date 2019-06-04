@@ -12,14 +12,13 @@ function fillInInformationOnEdit() {
   if (id) {
     let note = JSON.parse(localStorage.getItem("notes")).filter(
       note => note.id === id
-    );
-    document.getElementById("details_title").value = note[0].title;
-    document.getElementById("details_description").value = note[0].description;
-    document.getElementById("details_importance").innerHTML =
-      note[0].importance;
-    document.getElementById("details_due_date").value = note[0].dueDate;
+    )[0];
+    document.getElementById("details_title").value = note.title;
+    document.getElementById("details_description").value = note.description;
+    document.getElementById("details_importance").innerHTML = note.importance;
+    document.getElementById("details_due_date").value = note.dueDate;
     document.getElementById("details_due_date").dataset.finished =
-      note[0].finished;
+      note.finished;
   }
 }
 
