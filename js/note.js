@@ -57,7 +57,7 @@ function pushEditedNoteToNotes(notes, note) {
 }
 
 function getFinishStateOnEdit() {
-  return document.getElementById("details_due_date").dataset.finished;
+  return document.getElementById("details_due_date").dataset.finished == "true";
 }
 
 function generateUuid() {
