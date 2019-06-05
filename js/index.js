@@ -2,7 +2,7 @@ let notes;
 let filteredNotes;
 window.onload = function() {
   notes = JSON.parse(localStorage.getItem("notes"));
-  renderHandlebars(notes);
+  renderHandlebars();
 
   document
     .getElementById("new_note")
@@ -32,9 +32,11 @@ window.onload = function() {
     filterFinishedNotes;
 };
 
-function renderHandlebars(notes) {
+function renderHandlebars() {
   const noteTemplate = document.getElementById("note_template").innerHTML;
-  const context = { notes: notes };
+  const context = {
+    notes: filteredNotes === undefined ? notes : filteredNotes
+  };
   const compiledTemplate = Handlebars.compile(noteTemplate);
   const html = compiledTemplate(context);
   document.getElementById("notes_wrapper").innerHTML = html;
@@ -67,7 +69,11 @@ function updateFinishedStateInNotesArray(notes, finishedState, noteId) {
   }
 }
 
-function sortNotesByFinishedDate() {}
+function sortNotesByFinishedDate() {
+  filteredNotes = notes;
+  filteredNotes.sort((a, b) => moment(a.dueDate) - moment(b.dueDate));
+  renderHandlebars();
+}
 function sortNotesByCreatedDate() {}
 function sortNoteByImportance() {}
 function filterFinishedNotes() {}

@@ -16,9 +16,9 @@ function fillInInformationOnEdit() {
     document.getElementById("details_title").value = note.title;
     document.getElementById("details_description").value = note.description;
     document.getElementById("details_importance").innerHTML = note.importance;
-    document.getElementById("details_due_date").value = moment(
+    document.getElementById("details_due_date").value = formatDate(
       note.dueDate
-    ).format("YYYY-MM-DD");
+    );
     document.getElementById("details_due_date").dataset.finished =
       note.finished;
   }
@@ -76,5 +76,5 @@ function getNoteIdFromParameter() {
 }
 
 function formatDate(date) {
-  return moment(date).format("DD.MM.YYYY");
+  return moment(date).format("YYYY-MM-DD");
 }
