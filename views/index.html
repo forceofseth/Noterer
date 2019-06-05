@@ -22,7 +22,7 @@
           </div>
           <div id="nav_row2" class="nav_row">
             <div id="order_options">
-              <button id="finished_date" class="button">Finish Date</button>
+              <button id="finish_date" class="button">Finish Date</button>
               <button id="created_date" class="button">Created Date</button>
               <button id="importance" class="button">Importance</button>
             </div>
@@ -35,6 +35,7 @@
 
     <script src="../js/index.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script id="note_template" type="text/x-handlebars-template">
       {{#each notes}}
       <div class="note" data-note-id="{{id}}">
