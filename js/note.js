@@ -15,7 +15,7 @@ function fillInInformationOnEdit() {
     )[0];
     document.getElementById("details_title").value = note.title;
     document.getElementById("details_description").value = note.description;
-    document.getElementById("details_importance").innerHTML = note.importance;
+    document.getElementById("details_importance").value = note.importance;
     document.getElementById("details_due_date").value = formatDate(
       note.dueDate
     );
@@ -34,7 +34,7 @@ function saveToLocaleStorage() {
     id: getNoteIdFromParameter() ? getNoteIdFromParameter() : generateUuid(),
     title: document.getElementById("details_title").value,
     description: document.getElementById("details_description").value,
-    importance: document.getElementById("details_importance").innerHTML,
+    importance: document.getElementById("details_importance").value,
     dueDate: formatDate(document.getElementById("details_due_date").value),
     finished: getNoteIdFromParameter() ? getFinishStateOnEdit() : false
   };

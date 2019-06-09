@@ -46,9 +46,11 @@ function navigateToDetailsPage() {
 }
 
 function editNote(event) {
-  const noteId = event.target.parentElement.dataset.noteId;
-  if (noteId) {
-    window.location.href = "note.html?id=" + noteId;
+  if (event.target.className === "edit") {
+    const noteId = event.target.parentElement.dataset.noteId;
+    if (noteId) {
+      window.location.href = "note.html?id=" + noteId;
+    }
   }
 }
 function updateFinishedState(event) {

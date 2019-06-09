@@ -44,7 +44,10 @@
             <span><input type="checkbox" class="checkbox_finished" {{#if this.finished}}checked{{/if}}></span>
             <span>{{dueDate}}</span>
           </div>
-          <div class="note_importance">{{importance}}</div>
+          <div class="note_importance">
+            <div>Importance:</div>
+            <div>{{importance}}</div>
+          </div>
           <div class="note_description">
             {{description}}
           </div>
