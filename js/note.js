@@ -1,8 +1,8 @@
 window.onload = function() {
   fillInInformationOnEdit();
   document
-    .getElementById("save")
-    .addEventListener("click", saveToLocaleStorage);
+    .getElementById("note_details")
+    .addEventListener("submit", saveToLocaleStorage);
 
   document.getElementById("cancel").addEventListener("click", navigateToIndex);
 };
@@ -24,7 +24,8 @@ function fillInInformationOnEdit() {
   }
 }
 
-function saveToLocaleStorage() {
+function saveToLocaleStorage(event) {
+  event.preventDefault();
   let notes = JSON.parse(localStorage.getItem("notes"));
   if (notes === null) {
     localStorage.setItem("notes", JSON.stringify([]));
