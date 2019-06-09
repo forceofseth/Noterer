@@ -2,6 +2,7 @@ let notes;
 let filteredNotes;
 window.onload = function() {
   loadNotesFromLocalStorage();
+  changeStyle(document.getElementById("style_selector").value);
   renderHandlebars();
 
   document
@@ -32,7 +33,7 @@ window.onload = function() {
 
   document
     .getElementById("style_selector")
-    .addEventListener("change", changeStyle);
+    .addEventListener("change", event => changeStyle(event.target.value));
 };
 
 function loadNotesFromLocalStorage() {
@@ -106,8 +107,7 @@ function clearFilter() {
   renderHandlebars();
 }
 
-function changeStyle(event) {
-  const style = event.target.value;
+function changeStyle(style) {
   document
     .getElementById("style_css")
     .setAttribute("href", "../css/" + style + ".css");
