@@ -30,11 +30,15 @@ function saveToLocaleStorage() {
     localStorage.setItem("notes", JSON.stringify([]));
     notes = [];
   }
+  const importanceOption = document.getElementById("details_importance");
   const note = {
     id: getNoteIdFromParameter() ? getNoteIdFromParameter() : generateUuid(),
     title: document.getElementById("details_title").value,
     description: document.getElementById("details_description").value,
     importance: document.getElementById("details_importance").value,
+    importanceData:
+      importanceOption.options[importanceOption.selectedIndex].dataset
+        .importance,
     dueDate: formatDate(document.getElementById("details_due_date").value),
     finished: getNoteIdFromParameter() ? getFinishStateOnEdit() : false
   };

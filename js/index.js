@@ -1,7 +1,7 @@
 let notes;
 let filteredNotes;
 window.onload = function() {
-  notes = JSON.parse(localStorage.getItem("notes"));
+  loadNotesFromLocalStorage();
   renderHandlebars();
 
   document
@@ -19,18 +19,21 @@ window.onload = function() {
     .addEventListener("click", sortNotesByFinishedDate);
 
   document
-    .getElementById("created_date")
-    .addEventListener("click", sortNotesByCreatedDate);
-
-  document
     .getElementById("importance")
     .addEventListener("click", sortNoteByImportance);
 
   document
-    .getElementById("show_finished")
-    .addEventListener("click", filterFinishedNotes),
-    filterFinishedNotes;
+    .getElementById("hide_finished")
+    .addEventListener("click", filterFinishedNotes);
+
+  document
+    .getElementById("clear_filter")
+    .addEventListener("click", clearFilter);
 };
+
+function loadNotesFromLocalStorage() {
+  notes = JSON.parse(localStorage.getItem("notes"));
+}
 
 function renderHandlebars() {
   const noteTemplate = document.getElementById("note_template").innerHTML;
@@ -57,7 +60,6 @@ function updateFinishedState(event) {
   const finishedState = event.target.checked ? true : false;
   const noteId = event.target.closest(".note").dataset.noteId;
 
-  const notes = JSON.parse(localStorage.getItem("notes"));
   updateFinishedStateInNotesArray(notes, finishedState, noteId);
   localStorage.setItem("notes", JSON.stringify(notes));
 }
@@ -72,10 +74,30 @@ function updateFinishedStateInNotesArray(notes, finishedState, noteId) {
 }
 
 function sortNotesByFinishedDate() {
+  loadNotesFromLocalStorage();
   filteredNotes = notes;
   filteredNotes.sort((a, b) => moment(a.dueDate) - moment(b.dueDate));
   renderHandlebars();
 }
-function sortNotesByCreatedDate() {}
-function sortNoteByImportance() {}
-function filterFinishedNotes() {}
+function sortNoteByImportance() {
+  loadNotesFromLocalStorage();
+  filteredNotes = notes;
+  filteredNotes.sort(
+    (a, b) => Number(b.importanceData) - Number(a.importanceData)
+  );
+  renderHandlebars();
+}
+function filterFinishedNotes() {
+  loadNotesFromLocalStorage();
+  filteredNotes = notes;
+  filteredNotes = filteredNotes.filter(note => {
+    return note.finished === false;
+  });
+  renderHandlebars();
+}
+
+function clearFilter() {
+  loadNotesFromLocalStorage();
+  filteredNotes = notes;
+  renderHandlebars();
+}
