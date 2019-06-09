@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./stylesheets/note_detail_style.css" />
+    <title>Noterer</title>
+  </head>
+  <body>
+    <section id="note_detail_wrapper"></section>
+    <script src="scripts/detail-bootstrapper.js" type="module"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script id="note_detail_template" type="text/x-handlebars-template">
+      <form id="note_details">
+          <label for="details_title" id="label_details_title"> Title</label>
+          <input type="text" id="details_title" required value="{{title}}"/>
+          <label for="details_description" id="label_details_description"
+            >Description</label
+          >
+          <textarea id="details_description" required>{{description}}</textarea>
+          <label for="details_importance" id="label_detail_importance"
+            >Importance</label
+          >
+          <select id="details_importance">
+            <option value="Low" data-importance="0">Low</option>
+            <option value="Medium" data-importance="1">Medium</option>Medium</option>
+            <option value="High" data-importance="2">High</option>
+          </select>
+
+          <label for="details_due_date" id="label_details_due_date">
+            Due Date</label
+          >
+          <input type="date" id="details_due_date" required  value="{{dueDate}}"/>
+          <button type="submit" id="save" class="button">
+            Save
+          </button>
+          <button id="cancel" class="button">
+            Cancel
+          </button>
+      </form>
+    </script>
+  </body>
+</html>
