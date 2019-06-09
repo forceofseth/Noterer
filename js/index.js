@@ -29,6 +29,10 @@ window.onload = function() {
   document
     .getElementById("clear_filter")
     .addEventListener("click", clearFilter);
+
+  document
+    .getElementById("style_selector")
+    .addEventListener("change", changeStyle);
 };
 
 function loadNotesFromLocalStorage() {
@@ -100,4 +104,11 @@ function clearFilter() {
   loadNotesFromLocalStorage();
   filteredNotes = notes;
   renderHandlebars();
+}
+
+function changeStyle(event) {
+  const style = event.target.value;
+  document
+    .getElementById("style_css")
+    .setAttribute("href", "../css/" + style + ".css");
 }

@@ -32,16 +32,11 @@ select {
   padding: 10px;
 }
 
-#nav_row1 {
-  background-color: rgb(25, 66, 25);
-}
-
 #style_selector {
   float: right;
 }
 
 #nav_row2 {
-  background-color: rgb(27, 150, 27);
   overflow: auto;
 }
 
