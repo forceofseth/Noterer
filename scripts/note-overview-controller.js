@@ -26,60 +26,45 @@ export class NoteOverviewController {
       () => (window.location.href = "note_detail.html")
     );
 
-    this.finishDateButton.addEventListener(
-      "click",
-      this.sortNotesByFinishedDate
-    );
+    this.finishDateButton.addEventListener("click", () => {
+      const notes = this.noteStorage.getNotesOrderByFinishDate();
+      this.renderNotes(notes);
+    });
 
-    this.importanceButton.addEventListener("click", this.sortNoteByImportance);
+    this.importanceButton.addEventListener("click", () => {
+      const notes = this.noteStorage.getNotesOrderByImportance();
+      this.renderNotes(notes);
+    });
 
-    this.hideFinishedButton.addEventListener("click", this.filterFinishedNotes);
+    this.hideFinishedButton.addEventListener("click", () => {
+      const notes = this.noteStorage.getNotesFilterFinished();
+      this.renderNotes(notes);
+    });
 
-    this.clearFilterButton.addEventListener("click", this.clearFilter);
+    this.clearFilterButton.addEventListener("click", () => {
+      const notes = this.noteStorage.getNotes();
+      this.renderNotes(notes);
+    });
 
-    this.notesWrapper.addEventListener("click", this.editNote);
+    this.notesWrapper.addEventListener("click", event => {
+      if (event.target.className === "edit") {
+        const noteId = event.target.parentElement.dataset.noteId;
+        if (noteId) {
+          window.location.href = "note_detail.html?id=" + noteId;
+        }
+      }
+    });
 
-    this.notesWrapper.addEventListener("change", this.updateFinishedState);
+    this.notesWrapper.addEventListener("change", event => {
+      const noteId = event.target.closest(".note").dataset.noteId;
+      const note = this.noteStorage.getNoteById(noteId);
+      note.finished = event.target.checked ? true : false;
+      this.noteStorage.updateNote(note);
+    });
 
     this.styleSelector.addEventListener("change", event =>
       this.changeStyle(event.target.value)
     );
-  }
-
-  sortNotesByFinishedDate() {
-    const notes = this.noteStorage.getNotesOrderByFinishDate();
-    this.renderNotes(notes);
-  }
-
-  sortNoteByImportance() {
-    const notes = this.noteStorage.getNotesOrderByImportance();
-    this.renderNotes(notes);
-  }
-
-  filterFinishedNotes() {
-    const notes = this.noteStorage.getNotesFilterFinished();
-    this.renderNotes(notes);
-  }
-
-  clearFilter() {
-    const notes = this.noteStorage.getNotes();
-    this.renderNotes(notes);
-  }
-
-  editNote(event) {
-    if (event.target.className === "edit") {
-      const noteId = event.target.parentElement.dataset.noteId;
-      if (noteId) {
-        window.location.href = "note_detail.html?id=" + noteId;
-      }
-    }
-  }
-
-  updateFinishedState(event) {
-    const noteId = event.target.closest(".note").dataset.noteId;
-    const note = this.noteStorage.getNoteById(noteId);
-    note.finished = event.target.checked ? true : false;
-    this.noteStorage.updateNote(note);
   }
 
   changeStyle(style) {

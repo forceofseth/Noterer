@@ -18,9 +18,37 @@ export class NoteDetailController {
   }
 
   initEventHandlers() {
+    //TODO refactor get noteIdFromParameter into proper methods
     document
       .getElementById("note_details")
-      .addEventListener("submit", this.save);
+      .addEventListener("submit", event => {
+        if (event.target.value) event.preventDefault();
+        const importanceOption = document.getElementById("details_importance");
+        const note = {
+          id: this.getNoteIdFromParameter()
+            ? this.getNoteIdFromParameter()
+            : this.generateUuid(),
+          title: document.getElementById("details_title").value,
+          description: document.getElementById("details_description").value,
+          importance: document.getElementById("details_importance").value,
+          importanceData:
+            importanceOption.options[importanceOption.selectedIndex].dataset
+              .importance,
+          dueDate: this.formatDate(
+            document.getElementById("details_due_date").value
+          ),
+          finished: this.getNoteIdFromParameter()
+            ? this.getFinishState()
+            : false
+        };
+        if (this.getNoteIdFromParameter() === null) {
+          this.noteStorage.addNote(note);
+        } else {
+          this.noteStorage.updateNote(note);
+        }
+        this.navigateToNoteOverview();
+      });
+
     document
       .getElementById("cancel")
       .addEventListener("click", this.navigateToNoteOverview);
@@ -28,30 +56,6 @@ export class NoteDetailController {
 
   getNoteIdFromParameter() {
     return new URL(window.location.href).searchParams.get("id");
-  }
-
-  save(event) {
-    this.getNoteIdFromParameter();
-    event.preventDefault();
-    const importanceOption = document.getElementById("details_importance");
-    const note = {
-      id: this.getNoteIdFromParameter()
-        ? this.getNoteIdFromParameter()
-        : this.generateUuid(),
-      title: document.getElementById("details_title").value,
-      description: document.getElementById("details_description").value,
-      importance: document.getElementById("details_importance").value,
-      importanceData:
-        importanceOption.options[importanceOption.selectedIndex].dataset
-          .importance,
-      dueDate: this.formatDate(
-        document.getElementById("details_due_date").value
-      ),
-      finished: this.getNoteIdFromParameter() ? this.getFinishState() : false
-    };
-
-    this.noteStorage.addNote(note);
-    this.navigateToNoteOverview;
   }
 
   navigateToNoteOverview() {

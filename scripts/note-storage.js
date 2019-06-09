@@ -1,6 +1,9 @@
 export class NoteStorage {
   constructor() {
-    const notes = JSON.parse(localStorage.getItem("notes"));
+    let notes = JSON.parse(localStorage.getItem("notes"));
+    if (notes === null) {
+      notes = [];
+    }
     this.notes = notes;
     this.filterdNotes;
   }
