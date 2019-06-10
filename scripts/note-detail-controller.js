@@ -13,9 +13,9 @@ export class NoteDetailController {
 
   renderNoteDetail() {
     const note = this.noteStorage.getNoteById(this.getNoteIdFromParameter());
-    if (note !== undefined) {
+    if (note !== undefined && this.isEdit) {
       this.noteDetailWrapper.innerHTML = this.noteDetailTemplateCompiled(note);
-      //TODO ASSIGN OPTION OF SELECT
+      document.getElementById("details_importance").value = note.importance;
     } else {
       this.noteDetailWrapper.innerHTML = this.noteDetailTemplateCompiled({});
     }
