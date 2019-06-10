@@ -57,9 +57,11 @@ export class NoteOverviewController {
 
     this.notesWrapper.addEventListener("change", event => {
       const noteId = event.target.closest(".note").dataset.noteId;
-      const note = this.noteStorage.getNoteById(noteId);
-      note.finished = event.target.checked ? true : false;
-      this.noteStorage.updateNote(note);
+      if (noteId) {
+        const note = this.noteStorage.getNoteById(noteId);
+        note.finished = event.target.checked ? true : false;
+        this.noteStorage.updateNote(note);
+      }
     });
 
     this.styleSelector.addEventListener("change", event =>

@@ -1,10 +1,14 @@
 export class NoteDetailController {
   constructor(noteStorage) {
     this.noteStorage = noteStorage;
+
     this.noteDetailTemplateCompiled = Handlebars.compile(
       document.getElementById("note_detail_template").innerHTML
     );
+
     this.noteDetailWrapper = document.getElementById("note_detail_wrapper");
+
+    this.isEdit = !!this.getNoteIdFromParameter();
   }
 
   renderNoteDetail() {
@@ -18,16 +22,14 @@ export class NoteDetailController {
   }
 
   initEventHandlers() {
-    //TODO refactor get noteIdFromParameter into proper methods
     document
       .getElementById("note_details")
       .addEventListener("submit", event => {
-        if (event.target.value) event.preventDefault();
+        event.preventDefault();
+
         const importanceOption = document.getElementById("details_importance");
         const note = {
-          id: this.getNoteIdFromParameter()
-            ? this.getNoteIdFromParameter()
-            : this.generateUuid(),
+          id: this.isEdit ? this.getNoteIdFromParameter() : this.generateUuid(),
           title: document.getElementById("details_title").value,
           description: document.getElementById("details_description").value,
           importance: document.getElementById("details_importance").value,
@@ -37,15 +39,13 @@ export class NoteDetailController {
           dueDate: this.formatDate(
             document.getElementById("details_due_date").value
           ),
-          finished: this.getNoteIdFromParameter()
-            ? this.getFinishState()
-            : false
+          finished: this.isEdit ? this.getFinishState() : false
         };
-        if (this.getNoteIdFromParameter() === null) {
-          this.noteStorage.addNote(note);
-        } else {
-          this.noteStorage.updateNote(note);
-        }
+
+        this.isEdit
+          ? this.noteStorage.updateNote(note)
+          : this.noteStorage.addNote(note);
+
         this.navigateToNoteOverview();
       });
 

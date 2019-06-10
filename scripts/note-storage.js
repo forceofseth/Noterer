@@ -9,6 +9,7 @@ export class NoteStorage {
   }
 
   getNotes() {
+    this.notes = JSON.parse(localStorage.getItem("notes"));
     return this.notes;
   }
 
@@ -43,7 +44,7 @@ export class NoteStorage {
   updateNote(note) {
     const index = this.notes.findIndex(e => e.id === note.id);
     if (index === -1) {
-      //do nothing or throw error
+      //do nothing
     } else {
       this.notes[index] = note;
       localStorage.setItem("notes", JSON.stringify(this.notes));
