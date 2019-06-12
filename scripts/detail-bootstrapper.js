@@ -1,5 +1,5 @@
-import { NoteStorage } from "./note-storage.js";
-import { NoteDetailController } from "./note-detail-controller.js";
+import { NoteStorage } from "./dl/note-storage.js";
+import { NoteDetailController } from "./ui/note-detail-controller.js";
 class DetailBootstrapper {
   static start() {
     const noteStorage = new NoteStorage();

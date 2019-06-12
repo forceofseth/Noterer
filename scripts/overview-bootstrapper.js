@@ -1,5 +1,5 @@
-import { NoteStorage } from "./note-storage.js";
-import { NoteOverviewController } from "./note-overview-controller.js";
+import { NoteStorage } from "./dl/note-storage.js";
+import { NoteOverviewController } from "./ui/note-overview-controller.js";
 class OverviewBootstrapper {
   static start() {
     const noteStorage = new NoteStorage();
