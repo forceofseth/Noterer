@@ -9,7 +9,8 @@ export class NoteStorage {
     if (localStorageNotes === null) {
       return [
         {
-          description: "generated test description",
+          description:
+            "generated test description, editing this note saves a new note into the database",
           dueDate: "2019-06-01",
           finished: false,
           id: "test-id",
