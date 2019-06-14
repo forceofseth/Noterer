@@ -14,6 +14,7 @@ export class NoteDetailController {
   renderNoteDetail() {
     const note = this.noteStorage.getNoteById(this.getNoteIdFromParameter());
     if (note !== undefined && this.isEdit) {
+      note.dueDate = moment(note.dueDate).format("YYYY-MM-DD");
       this.noteDetailWrapper.innerHTML = this.noteDetailTemplateCompiled(note);
       document.getElementById("details_importance").value = note.importance;
     } else {
@@ -78,7 +79,7 @@ export class NoteDetailController {
   }
 
   formatDate(date) {
-    return moment(date).format("YYYY-MM-DD");
+    return moment(date).format("DD.MM.YYYY");
   }
 
   noteDetailAction() {
