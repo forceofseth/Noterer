@@ -14,21 +14,21 @@ export class NoteStorage {
   }
 
   getNotesOrderByFinishDate() {
-    this.filteredNotes = this.notes;
+    this.filteredNotes = [...this.notes];
     return this.filteredNotes.sort(
       (a, b) => moment(a.dueDate) - moment(b.dueDate)
     );
   }
 
   getNotesOrderByImportance() {
-    this.filteredNotes = this.notes;
+    this.filteredNotes = [...this.notes];
     return this.filteredNotes.sort(
       (a, b) => Number(b.importanceData) - Number(a.importanceData)
     );
   }
 
   getNotesFilterFinished() {
-    this.filteredNotes = this.notes;
+    this.filteredNotes = [...this.notes];
     return this.filteredNotes.filter(note => note.finished === false);
   }
 
