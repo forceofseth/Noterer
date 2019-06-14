@@ -2,14 +2,28 @@ export class NoteStorage {
   constructor() {
     let notes = JSON.parse(localStorage.getItem("notes"));
     if (notes === null) {
-      notes = [];
+      this.notes = [
+        ...[
+          {
+            description: "test",
+            dueDate: "2019-06-01",
+            finished: false,
+            id: "_azdubu7z0",
+            importance: "Low",
+            importanceData: "0",
+            title: "test"
+          }
+        ]
+      ];
+    } else {
+      this.notes = notes;
     }
-    this.notes = notes;
     this.filterdNotes;
   }
 
   getNotes() {
-    this.notes = JSON.parse(localStorage.getItem("notes"));
+    const localStorageNotes = JSON.parse(localStorage.getItem("notes"));
+    this.notes = localStorageNotes ? [...localStorageNotes] : this.notes;
     return this.notes;
   }
 
