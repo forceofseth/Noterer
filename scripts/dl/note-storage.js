@@ -1,28 +1,26 @@
 export class NoteStorage {
   constructor() {
-    this.notes = [];
+    this.notes = JSON.parse(localStorage.getItem("notes"));
     this.filterdNotes;
   }
 
   getNotes() {
     const localStorageNotes = JSON.parse(localStorage.getItem("notes"));
     if (localStorageNotes === null) {
-      return [
-        {
-          description:
-            "generated test description, editing this note saves a new note into the database",
-          dueDate: "2019-06-01",
-          finished: false,
-          id: "test-id",
-          importance: "Low",
-          importanceData: "0",
-          title: "generated test title"
-        }
-      ];
+      this.notes = [];
+      this.addNote({
+        description: "generated test description",
+        dueDate: "2019-06-01",
+        finished: false,
+        id: "test-id",
+        importance: "Low",
+        importanceData: "0",
+        title: "generated test title"
+      });
     } else {
       this.notes = localStorageNotes;
-      return this.notes;
     }
+    return this.notes;
   }
 
   getNotesOrderByFinishDate() {
