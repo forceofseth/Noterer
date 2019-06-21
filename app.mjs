@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
-import {noteRoutes} from "./routes/note-routes"
+import path from 'path';
+import {noteRoutes} from "./routes/note-routes.mjs";
 
 const app = express();
 

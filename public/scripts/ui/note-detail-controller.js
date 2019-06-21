@@ -60,7 +60,7 @@ export class NoteDetailController {
   }
 
   navigateToNoteOverview() {
-    window.location.href = "/public/html/index.html";
+    window.location.href = "../html/index.html";
   }
 
   getFinishState() {

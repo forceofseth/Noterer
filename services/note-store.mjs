@@ -14,7 +14,7 @@ export class Note{
 
 export class NoteStore{
     constructor(db){
-        this.db || new Datastore({filename: "./data/notes.db", autoload:true});
+        this.db = db || new Datastore({filename: "./data/notes.db", autoload:true});
 
     }
 
@@ -33,7 +33,7 @@ export class NoteStore{
     }
 
     async all(){
-        return await this.db.cfind().exec();
+        return await this.db.cfind({}).exec();
     }
 }
 

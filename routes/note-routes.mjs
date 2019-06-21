@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import {noteController} from '../controller/note-controller';
+import {noteController} from '../controller/note-controller.mjs';
 
 router.get("/", noteController.getNotes.bind(noteController));
 router.post("/", noteController.createNote.bind(noteController));

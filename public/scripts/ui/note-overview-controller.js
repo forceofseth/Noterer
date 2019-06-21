@@ -23,7 +23,7 @@ export class NoteOverviewController {
   initEventHandlers() {
     this.newNoteButton.addEventListener(
       "click",
-      () => (window.location.href = "/public/html/note_detail.html")
+      () => (window.location.href = "../html/note_detail.html")
     );
 
     this.finishDateButton.addEventListener("click", () => {
@@ -42,7 +42,7 @@ export class NoteOverviewController {
     });
 
     this.clearFilterButton.addEventListener("click", () => {
-      const notes = this.noteStorage.getNotes();
+      const notes = this.noteStorage.getAllNotes();
       this.renderNotes(notes);
     });
 
@@ -77,7 +77,7 @@ export class NoteOverviewController {
 
   noteAction() {
     this.changeStyle(document.getElementById("style_selector").value);
-    this.renderNotes(this.noteStorage.getNotes());
+    this.renderNotes(this.noteStorage.getAllNotes());
     this.initEventHandlers();
   }
 }

@@ -1,26 +1,12 @@
+import {httpService} from "./http-service.js";
+
 export class NoteStorage {
   constructor() {
     this.notes = JSON.parse(localStorage.getItem("notes"));
-    this.filterdNotes;
   }
 
-  getNotes() {
-    const localStorageNotes = JSON.parse(localStorage.getItem("notes"));
-    if (localStorageNotes === null) {
-      this.notes = [];
-      this.addNote({
-        description: "generated test description",
-        dueDate: "2019-06-01",
-        finished: false,
-        id: "test-id",
-        importance: "Low",
-        importanceData: "0",
-        title: "generated test title"
-      });
-    } else {
-      this.notes = localStorageNotes;
-    }
-    return this.notes;
+  async getAllNotes() {
+    return await httpService.ajax("GET","/notes/", undefined);
   }
 
   getNotesOrderByFinishDate() {
@@ -42,13 +28,12 @@ export class NoteStorage {
     return this.filteredNotes.filter(note => note.finished === false);
   }
 
-  getNoteById(id) {
-    return this.notes.find(note => note.id === id);
+  async getNoteById(id) {
+    return await httpService.ajax("GET", `/notes/${id}`, undefined);
   }
 
-  addNote(note) {
-    this.notes.push(note);
-    localStorage.setItem("notes", JSON.stringify(this.notes));
+  async addNote(note) {
+    return await httpService.ajax("POST", "/notes/", note);
   }
 
   updateNote(note) {

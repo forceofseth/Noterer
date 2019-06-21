@@ -1,4 +1,4 @@
-import {noteStore} from '../services/note-store';
+import {noteStore} from '../services/note-store.mjs';
 
 export class NoteController {
 
@@ -7,7 +7,7 @@ export class NoteController {
     };
 
     async createNote(req, res) {
-        res.json(await noteStore.add(req.body.name));
+        res.json(await noteStore.add(req.body));
     };
 
     async getNote(req, res) {
