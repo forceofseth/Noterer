@@ -23,7 +23,7 @@ export class NoteOverviewController {
   initEventHandlers() {
     this.newNoteButton.addEventListener(
       "click",
-      () => (window.location.href = "note_detail.html")
+      () => (window.location.href = "/public/html/note_detail.html")
     );
 
     this.finishDateButton.addEventListener("click", () => {
@@ -72,7 +72,7 @@ export class NoteOverviewController {
   changeStyle(style) {
     document
       .getElementById("style_css")
-      .setAttribute("href", "./stylesheets/" + style + ".css");
+      .setAttribute("href", "../stylesheets/" + style + ".css");
   }
 
   noteAction() {
