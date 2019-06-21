@@ -1,8 +1,8 @@
-const express = require("express");
-const bodyParser = require("body-parser");
+import express from "express";
+import bodyParser from "body-parser";
+import {noteRoutes} from "./routes/note-routes"
 
 const app = express();
-const router = express.Router();
 
 app.use(express.static(path.resolve("public/html")));
 app.use(express.static(path.resolve("public")));
@@ -12,6 +12,8 @@ app.use(bodyParser.json());
 app.get("/", function(req, res) {
   res.sendFile("/html/index.html", { root: __dirname + "/public/" });
 });
+
+app.use("/notes", noteRoutes)
 
 const hostname = "127.0.0.1";
 const port = 3001;
