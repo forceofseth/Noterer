@@ -1,4 +1,5 @@
 export class NoteDetailController {
+
   constructor(noteStorage) {
     this.noteStorage = noteStorage;
 

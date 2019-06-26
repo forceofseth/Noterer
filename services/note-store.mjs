@@ -5,7 +5,6 @@ export class Note{
         this.description = note.description;
         this.dueDate = note.dueDate;
         this.finished = note.finished;
-        this.id = note.id;
         this.importance = note.importance;
         this.importanceData = note.importanceData;
         this.title = note.title;
