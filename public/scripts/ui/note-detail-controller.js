@@ -11,10 +11,10 @@ export class NoteDetailController {
     this.isEdit = !!this.getNoteIdFromParameter();
   }
 
-  renderNoteDetail() {
-    const note = this.noteStorage.getNoteById(this.getNoteIdFromParameter());
-    if (note !== undefined && this.isEdit) {
-      note.dueDate = moment(note.dueDate).format("YYYY-MM-DD");
+  async renderNoteDetail() {
+    const note = await this.noteStorage.getNoteById(this.getNoteIdFromParameter());
+    if (note !== null && this.isEdit) {
+      note.dueDate = moment(note.dueDate,"DD.MM.YYYY").format("YYYY-MM-DD");
       this.noteDetailWrapper.innerHTML = this.noteDetailTemplateCompiled(note);
       document.getElementById("details_importance").value = note.importance;
     } else {
@@ -30,7 +30,6 @@ export class NoteDetailController {
 
         const importanceOption = document.getElementById("details_importance");
         const note = {
-          id: this.isEdit ? this.getNoteIdFromParameter() : this.generateUuid(),
           title: document.getElementById("details_title").value,
           description: document.getElementById("details_description").value,
           importance: document.getElementById("details_importance").value,
@@ -42,6 +41,10 @@ export class NoteDetailController {
           ),
           finished: this.isEdit ? this.getFinishState() : false
         };
+
+        if(this.isEdit){
+          note._id = this.getNoteIdFromParameter();
+        }
 
         this.isEdit
           ? this.noteStorage.updateNote(note)
@@ -65,16 +68,7 @@ export class NoteDetailController {
 
   getFinishState() {
     return (
-      document.getElementById("details_due_date").dataset.finished == "true"
-    );
-  }
-
-  generateUuid() {
-    return (
-      "_" +
-      Math.random()
-        .toString(36)
-        .substr(2, 9)
+      document.getElementById("details_due_date").dataset.finished === "true"
     );
   }
 
@@ -82,8 +76,8 @@ export class NoteDetailController {
     return moment(date).format("DD.MM.YYYY");
   }
 
-  noteDetailAction() {
-    this.renderNoteDetail();
+  async noteDetailAction() {
+    await this.renderNoteDetail();
     this.initEventHandlers();
   }
 }

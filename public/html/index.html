@@ -46,7 +46,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script id="note_template" type="text/x-handlebars-template">
       {{#each notes}}
-      <div class="note" data-note-id="{{id}}">
+      <div class="note" data-note-id="{{_id}}">
           <div class="note_title">{{title}}</div>
           <div class="due_date_finished">
             <span><input type="checkbox" class="checkbox_finished" {{#if this.finished}}checked{{/if}}></span>

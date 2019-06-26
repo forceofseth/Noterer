@@ -14,8 +14,8 @@ export class NoteController {
         res.json(await noteStore.get(req.params.id));
     };
 
-    async updateOrder(req,res){
-        res.json(await noteStore.update(req.params.id,note));
+    async updateNote(req, res){
+        res.json(await noteStore.update(req.body));
     }
 }
 

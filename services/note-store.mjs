@@ -28,12 +28,12 @@ export class NoteStore{
     }
 
     async update(note){
-        await this.db.update({_id:note.id},{$set:note});
-        return await this.get(id);
+        await this.db.update({_id:note._id},{$set:note});
+        return await this.get(note.id);
     }
 
     async all(){
-        return await this.db.cfind({}).exec();
+        return await this.db.cfind({}).sort({dueDate: -1}).exec();
     }
 }
 

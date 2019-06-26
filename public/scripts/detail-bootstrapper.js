@@ -1,9 +1,9 @@
 import { NoteStorage } from "./dl/note-storage.js";
 import { NoteDetailController } from "./ui/note-detail-controller.js";
 class DetailBootstrapper {
-  static start() {
+   static async start() {
     const noteStorage = new NoteStorage();
-    new NoteDetailController(noteStorage).noteDetailAction();
+    await new NoteDetailController(noteStorage).noteDetailAction();
   }
 }
 

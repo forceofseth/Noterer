@@ -20,14 +20,14 @@ export class NoteOverviewController {
       notes: notes
     });
   }
-  initEventHandlers() {
+   initEventHandlers() {
     this.newNoteButton.addEventListener(
       "click",
       () => (window.location.href = "../html/note_detail.html")
     );
 
-    this.finishDateButton.addEventListener("click", () => {
-      const notes = this.noteStorage.getNotesOrderByFinishDate();
+    this.finishDateButton.addEventListener("click", async() => {
+      const notes =  await this.noteStorage.getNotesOrderByFinishDate();
       this.renderNotes(notes);
     });
 
@@ -41,8 +41,8 @@ export class NoteOverviewController {
       this.renderNotes(notes);
     });
 
-    this.clearFilterButton.addEventListener("click", () => {
-      const notes = this.noteStorage.getAllNotes();
+    this.clearFilterButton.addEventListener("click", async() => {
+      const notes = await this.noteStorage.getAllNotes();
       this.renderNotes(notes);
     });
 
@@ -55,12 +55,12 @@ export class NoteOverviewController {
       }
     });
 
-    this.notesWrapper.addEventListener("change", event => {
+    this.notesWrapper.addEventListener("change", async event => {
       const noteId = event.target.closest(".note").dataset.noteId;
       if (noteId) {
-        const note = this.noteStorage.getNoteById(noteId);
+        const note =  await this.noteStorage.getNoteById(noteId);
         note.finished = event.target.checked ? true : false;
-        this.noteStorage.updateNote(note);
+        await this.noteStorage.updateNote(note);
       }
     });
 
@@ -75,9 +75,9 @@ export class NoteOverviewController {
       .setAttribute("href", "../stylesheets/" + style + ".css");
   }
 
-  noteAction() {
+  async noteAction() {
     this.changeStyle(document.getElementById("style_selector").value);
-    this.renderNotes(this.noteStorage.getAllNotes());
+    this.renderNotes(await this.noteStorage.getAllNotes());
     this.initEventHandlers();
   }
 }
