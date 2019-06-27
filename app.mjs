@@ -16,7 +16,7 @@ app.get("/", function(req, res) {
 
 app.use("/notes", noteRoutes)
 
-const hostname = "127.0.0.1";
+const hostname = "0.0.0.0";
 const port =  process.env.PORT || 3001;
 
 app.listen(port, hostname, () => {
