@@ -19,6 +19,6 @@ app.use("/notes", noteRoutes)
 const hostname = "127.0.0.1";
 const port = 3001;
 
-app.listen(port, hostname, () => {
+app.listen(process.env.PORT || port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
