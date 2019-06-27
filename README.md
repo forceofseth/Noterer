@@ -1,2 +1,2 @@
 # Noterer
-Demo: https://noterer.netlify.com/
+Demo: https://noterer.herokuapp.com/
