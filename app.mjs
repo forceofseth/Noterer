@@ -16,9 +16,8 @@ app.get("/", function(req, res) {
 
 app.use("/notes", noteRoutes)
 
-const hostname = "127.0.0.1";
-const port = 3001;
+const port = process.env.PORT || 3001;
 
-app.listen(process.env.PORT || port, hostname, () => {
+app.listen(port ,() => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
